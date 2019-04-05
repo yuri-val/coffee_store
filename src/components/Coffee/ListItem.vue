@@ -52,7 +52,7 @@ export default {
     height:100%;
     border-radius: 50%;
 }
-@-webkit-keyframes spin {
+@keyframes spin {
     from {
         transform:rotate(0deg);
     }
@@ -61,9 +61,9 @@ export default {
     }
 }
 .spin.animated {
-    -webkit-animation-name: spin;
-    -webkit-animation-duration: 1000ms;
-    -webkit-animation-iteration-count: 1;
-    -webkit-animation-timing-function: ease;
+    animation-name: spin;
+    animation-duration: 1000ms;
+    animation-iteration-count: 1;
+    animation-timing-function: ease;
 }
 </style>
