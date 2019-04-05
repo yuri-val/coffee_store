@@ -49,7 +49,7 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
+    assetsSubDirectory: (process.env.GHPAGES === '1' ? 'coffee_store/' : '') + 'static',
     assetsPublicPath: '/',
 
     /**
