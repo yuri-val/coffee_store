@@ -19,9 +19,9 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 
-import {formatSum} from '@/utils/formatter'
+import { formatSum } from '@/utils/formatter'
 import CartRow from './CartRow'
 import PayPad from './PayPad'
 
@@ -33,14 +33,14 @@ export default {
   },
   data () {
     return {
-      
+
     }
   },
   computed: {
     ...mapGetters(['SHOW_CART', 'CART', 'CART_SUM'])
   },
   methods: {
-    close: function() {
+    close: function () {
       this.$store.dispatch('SHOW_CART', false)
     },
     formatSum: formatSum

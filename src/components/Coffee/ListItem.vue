@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import {formatSum} from '@/utils/formatter'
+import { formatSum } from '@/utils/formatter'
 
 export default {
   name: 'ListItem',
@@ -37,10 +37,10 @@ export default {
       return formatSum(coffeePrice, 'грн.')
     },
     addToCart: function (item) {
-      this.$store.dispatch('ADD_TO_CART', { ...item, count: this.count });
-      this.count = 1;
-      this.imageClass = 'spin animated';
-      setTimeout(() => this.imageClass = '', 1000);
+      this.$store.dispatch('ADD_TO_CART', { ...item, count: this.count })
+      this.count = 1
+      this.imageClass = 'spin animated'
+      setTimeout(() => { this.imageClass = '' }, 1000)
     }
   }
 }
@@ -67,4 +67,3 @@ export default {
     -webkit-animation-timing-function: ease;
 }
 </style>
-

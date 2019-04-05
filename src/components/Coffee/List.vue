@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+import { mapGetters } from 'vuex'
 
 import CoffeeItem from './ListItem'
 
@@ -16,15 +16,15 @@ export default {
   components: {
     CoffeeItem
   },
-  created() {
-    this.$store.dispatch('GET_COFFEE_LIST');
+  created () {
+    this.$store.dispatch('GET_COFFEE_LIST')
   },
   computed: {
     ...mapGetters(['COFFEE_LIST', 'CARDS_IN_ROW']),
     inRowWords: function () {
       return ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'][this.CARDS_IN_ROW]
     }
-  },
+  }
 
 }
 </script>

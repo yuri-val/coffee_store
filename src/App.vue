@@ -7,7 +7,7 @@
       </div>
       <div class="align-right header-actions">
         <fish-button style="position: relative;" shape="circle" @click="showCart">
-          <i class="fas fa-shopping-cart"></i> {{formatSum(CART_SUM, 'грн.')}} 
+          <i class="fas fa-shopping-cart"></i> {{formatSum(CART_SUM, 'грн.')}}
           <fish-tag v-if="CART_COUNT > 0" index="floating" floating color="negative" shape="circle">
             {{CART_COUNT}}
           </fish-tag>
@@ -20,20 +20,20 @@
           <fish-button disabled>Карточек в ряд: {{CARDS_IN_ROW}}</fish-button>
           <fish-button @click="changeCards(1)">+</fish-button>
         </fish-buttons>
-      </div>   
+      </div>
     </nav>
     <div slot="content" id="main">
       <cart />
-      <router-view/>  
+      <router-view/>
     </div>
   </fish-layout>
   </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+import { mapGetters } from 'vuex'
 
-import {formatSum} from '@/utils/formatter'
+import { formatSum } from '@/utils/formatter'
 import Cart from '@/components/Cart/CartModal'
 
 export default {
@@ -54,7 +54,7 @@ export default {
       this.$store.dispatch('SAVE_CARDS_IN_ROW', this.CARDS_IN_ROW + count)
     },
     formatSum: (sum, currency) => formatSum(sum, currency),
-    showCart: function() {
+    showCart: function () {
       this.$store.dispatch('SHOW_CART', true)
     }
   }
@@ -87,7 +87,7 @@ export default {
     padding: 1em;
   }
   .align-left {
-	  float: left;
+    float: left;
   }
   .align-right {
     float: right;

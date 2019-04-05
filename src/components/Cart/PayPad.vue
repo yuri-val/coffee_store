@@ -20,7 +20,7 @@
         <fish-col v-for="(button, index) in buttonsRow" span="6" :key="`${indexRow}_${index}`">
           <fish-button shape="circle" size="large" :type="buttonType(button)" :disabled="disableButton(button)" @click="pressButton(button)">
             {{button}}
-          </fish-button>        
+          </fish-button>
         </fish-col>
       </fish-row>
     </div>
@@ -28,9 +28,9 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from 'vuex'
 
-import {formatSum} from '@/utils/formatter'
+import { formatSum } from '@/utils/formatter'
 
 export default {
   name: 'PayPad',
@@ -73,13 +73,13 @@ export default {
   computed: {
     ...mapGetters(['CART_SUM', 'CART']),
     change: function () {
-      return this.canBePaid ? this.receive - this.CART_SUM : 0; 
+      return this.canBePaid ? this.receive - this.CART_SUM : 0
     },
     canBePaid: function () {
       return this.receive - this.CART_SUM >= 0
     }
-  },
-  
+  }
+
 }
 </script>
 

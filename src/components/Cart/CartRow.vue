@@ -16,14 +16,14 @@
         </fish-button>
         <fish-button type="negative" shape="circle" size="small" @click="deleteRow">
           <i class="far fa-trash-alt"></i>
-        </fish-button>    
+        </fish-button>
       </div>
     </fish-col>
   </fish-row>
 </template>
 
 <script>
-import {formatSum} from '@/utils/formatter'
+import { formatSum } from '@/utils/formatter'
 
 export default {
   name: 'CartRow',
@@ -35,9 +35,9 @@ export default {
   },
   methods: {
     sumFormat: (item) => `${formatSum(item.price)} x ${item.count} = ${formatSum(item.price * item.count, 'грн.')}`,
-    deleteRow: function() {
-      this.$store.dispatch('DELETE_CART_ITEM', this.index);
-    } 
+    deleteRow: function () {
+      this.$store.dispatch('DELETE_CART_ITEM', this.index)
+    }
   }
 
 }
