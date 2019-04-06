@@ -1,5 +1,5 @@
 <template>
-    <fish-modal title="Чек" :visible="SHOW_CART" @keydown.esc="close" @update:visible="close" class="cart" >
+    <fish-modal :width="window.width < 850 && window.width" title="Чек" :visible="SHOW_CART" @keydown.esc="close" @update:visible="close" class="cart" >
       <fish-row>
         <fish-col span="15">
           <cart-row v-for="(item, index) in CART" :key='index' :item="item" :index="index" />
