@@ -4,7 +4,7 @@
         <fish-col span="15">
           <cart-row v-for="(item, index) in CART" :key='index' :item="item" :index="index" />
           <br>
-          <cart-total-row />
+          <cart-total-row :showPayNoChange="true"/>
         </fish-col>
         <fish-col span="2" />
         <fish-col span="7">
@@ -13,9 +13,9 @@
       </fish-row>
       <fish-row v-else class="modal-body"  justify="center">
         <fish-col span="24">
-          <cart-row v-for="(item, index) in CART" :key='index' :item="item" :index="index" />
-          <cart-total-row />
+          <cart-total-row :showPayNoChange="false"/><br>
           <pay-pad />
+          <cart-row v-for="(item, index) in CART" :key='index' :item="item" :index="index" />
         </fish-col>
       </fish-row>
     </fish-modal>
