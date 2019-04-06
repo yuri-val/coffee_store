@@ -29,21 +29,21 @@ export default {
   components: {
     CurrencySelect
   },
-  data() {
-    return {};
+  data () {
+    return {}
   },
   computed: {
     ...mapGetters(['CARDS_IN_ROW'])
   },
   methods: {
-    closePanel() {
-      this.$emit("closePanel", {})
+    closePanel () {
+      this.$emit('closePanel', {})
       this.$store.dispatch('SHOW_SETTINGS', false)
     },
     changeCards: function (count) {
       this.$store.dispatch('SAVE_CARDS_IN_ROW', this.CARDS_IN_ROW + count)
-    },
-    
+    }
+
   }
 }
 </script>
@@ -52,6 +52,6 @@ export default {
   .main {
     margin: 5px;
     margin-top: 70px;
-    
+
   }
 </style>

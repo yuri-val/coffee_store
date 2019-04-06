@@ -9,20 +9,20 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'CurrencySelect',
-  data() {
+  data () {
     return {
       currency: '',
       options: ['грн.', 'руб.', 'USD', 'EUR']
     }
   },
-  created() {
-    this.currency = this.CURRENCY;
+  created () {
+    this.currency = this.CURRENCY
   },
   computed: {
     ...mapGetters(['CURRENCY'])
   },
   methods: {
-    onChange() {
+    onChange () {
       this.$store.dispatch('SAVE_CURRENCY', this.currency)
     }
   }
