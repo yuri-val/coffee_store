@@ -1,6 +1,6 @@
 {
-  "name": "coffe_store",
-  "version": "1.0.0",
+  "name": "coffee_store",
+  "version": "1.1.0",
   "description": "Coffe store web client app",
   "author": "Yuri V <yuri.valigursky@gmail.com>",
   "private": true,

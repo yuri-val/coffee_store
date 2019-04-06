@@ -4,6 +4,7 @@ export default {
   },
   SET_CARDS_IN_ROW: (state, payload) => {
     state.cardsInRow = payload
+    localStorage.setItem('cardsInRow', payload)
   },
   ADD_TO_CART: (state, payload) => {
     const newItem = payload

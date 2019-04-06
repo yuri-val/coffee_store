@@ -1,6 +1,8 @@
 <template>
   <fish-card :key="coffeeCard.id" color="black">
-    <fish-tag size="massive" index="top right" attached="top right" color="yellow">{{price(coffeeCard.price)}}</fish-tag>
+    <fish-tag size="medium" index="top right" attached="top right" color="yellow" class="price">
+      {{price(coffeeCard.price)}}
+    </fish-tag>
     <div class="img-contain" slot="image"  >
       <img shape="circle" :src="`${coffeeCard.photo}?random=${coffeeCard.id}`" width="100%" :class="imageClass" @click="addToCart(coffeeCard)"/>
     </div>
@@ -66,4 +68,10 @@ export default {
     animation-iteration-count: 1;
     animation-timing-function: ease;
 }
+.price {
+  border-radius: 50em !important;
+  top: 43px !important;
+  font-family: 'Courier New', Courier, monospace !important;
+}
+
 </style>

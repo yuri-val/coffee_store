@@ -2,7 +2,7 @@
   <div>
     <div>
       <fish-row class="padded-row">
-        <fish-col span="12" class="demo-col">Получено:</fish-col>
+        <fish-col span="12">Получено:</fish-col>
         <fish-col span="10">
           <span class="align-right">{{formatSum(receive, "грн.")}}</span>
         </fish-col>
@@ -22,9 +22,10 @@
     </div>
     <br>
     <div class="pay-pad">
-      <fish-row v-for="(buttonsRow, indexRow) in payButtons" :key="indexRow" class="padded-row">
+      <fish-row v-for="(buttonsRow, indexRow) in payButtons" :key="indexRow" class="padded-row" type="flex">
         <fish-col v-for="(button, index) in buttonsRow" span="6" :key="`${indexRow}_${index}`">
-          <fish-button shape="circle" size="large" :type="buttonType(button)" :disabled="disableButton(button)" @click="pressButton(button)">
+          <fish-button shape="circle" size="large" :type="buttonType(button)"
+              :disabled="button === '' || disableButton(button)" @click="pressButton(button)">
             {{button}}
           </fish-button>
         </fish-col>
@@ -44,9 +45,9 @@ export default {
     return {
       payButtons: [
         ['7', '8', '9', '←'],
-        ['4', '5', '6'],
-        ['1', '2', '3'],
-        ['.', '0', 'Оплата']
+        ['4', '5', '6', ''],
+        ['1', '2', '3', ''],
+        ['.', '0', 'Оплата', '']
       ],
       receive: 0,
       sumString: ''
@@ -95,5 +96,6 @@ export default {
   }
   .padded-row {
     padding-bottom: 10px !important;
+    flex-wrap: unset !important;
   }
 </style>

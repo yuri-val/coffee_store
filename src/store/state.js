@@ -1,6 +1,6 @@
 export default {
   coffeeList: [],
-  cardsInRow: 4,
+  cardsInRow: parseInt(localStorage.getItem('cardsInRow') || 4),
   cart: [],
   showCart: false,
   window: {
