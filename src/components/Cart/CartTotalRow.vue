@@ -1,8 +1,8 @@
 <template>
-  <fish-row :key='9999'>
-    <fish-col span="10"><b>Всего:</b></fish-col>
+  <fish-row :key='9999' class="unset-wrap">
+    <fish-col span="10"><b>К оплате:</b></fish-col>
     <fish-col span="8"><b class="align-right">{{formatSum(CART_SUM, 'грн.')}}</b></fish-col>
-    <fish-col span="4">
+    <fish-col span="4" v-if="showPayNoChange">
       <fish-button shape="circle" type="positive" @click="saveCheck" size="small">
         Оплата без сдачи
       </fish-button>
@@ -16,6 +16,7 @@ import { mapGetters } from 'vuex'
 import { formatSum } from '@/utils/formatter'
 
 export default {
+  props: ['showPayNoChange'],
   name: 'CartTotalRow',
   computed: {
     ...mapGetters(['CART', 'CART_SUM'])
@@ -32,5 +33,7 @@ export default {
 </script>
 
 <style>
-
+  .unset-wrap {
+    flex-wrap: unset !important;
+  }
 </style>

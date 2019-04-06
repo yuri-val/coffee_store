@@ -8,7 +8,7 @@
     </div>
     <div slot="header"><strong>{{coffeeCard.name}}</strong></div>
     <div slot="footer">
-      <div class="align-right">
+      <fish-row class="unset-wrap align-right">
         <fish-buttons>
           <fish-button @click="count > 1 && count--">-</fish-button>
           <fish-button disabled>{{count}}</fish-button>
@@ -17,7 +17,7 @@
         <fish-button type="positive" @click="addToCart(coffeeCard)">
           <i class="fas fa-cart-arrow-down"></i> В чек
         </fish-button>
-      </div>
+      </fish-row>
     </div>
   </fish-card>
 </template>
@@ -49,29 +49,32 @@ export default {
 </script>
 
 <style scoped>
-.spin {
-    width:100%;
-    height:100%;
-    border-radius: 50%;
-}
-@keyframes spin {
-    from {
-        transform:rotate(0deg);
-    }
-    to {
-        transform:rotate(360deg);
-    }
-}
-.spin.animated {
-    animation-name: spin;
-    animation-duration: 1000ms;
-    animation-iteration-count: 1;
-    animation-timing-function: ease;
-}
-.price {
-  border-radius: 50em !important;
-  top: 43px !important;
-  font-family: 'Courier New', Courier, monospace !important;
-}
-
+  .spin {
+      width:100%;
+      height:100%;
+      border-radius: 50%;
+  }
+  @keyframes spin {
+      from {
+          transform:rotate(0deg);
+      }
+      to {
+          transform:rotate(360deg);
+      }
+  }
+  .spin.animated {
+      animation-name: spin;
+      animation-duration: 1000ms;
+      animation-iteration-count: 1;
+      animation-timing-function: ease;
+  }
+  .price {
+    border-radius: 50em !important;
+    top: 43px !important;
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+  .unset-wrap {
+    flex-wrap: unset !important;
+    width: auto !important;
+  }
 </style>
