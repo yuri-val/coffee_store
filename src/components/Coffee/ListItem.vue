@@ -9,12 +9,12 @@
     <div slot="header"><strong>{{coffeeCard.name}}</strong></div>
     <div slot="footer">
       <fish-row class="unset-wrap align-right">
-        <fish-buttons>
+        <fish-buttons size="medium">
           <fish-button @click="count > 1 && count--">-</fish-button>
           <fish-button disabled>{{count}}</fish-button>
           <fish-button @click="count++">+</fish-button>
         </fish-buttons>
-        <fish-button type="positive" @click="addToCart(coffeeCard)">
+        <fish-button size="medium" type="positive" @click="addToCart(coffeeCard)">
           <i class="fas fa-cart-arrow-down"></i> В чек
         </fish-button>
       </fish-row>
@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import { formatSum } from '@/utils/formatter'
 
 export default {
@@ -34,9 +36,12 @@ export default {
       imageClass: ''
     }
   },
+  computed: {
+    ...mapGetters(['CURRENCY'])
+  },
   methods: {
     price: function (coffeePrice) {
-      return formatSum(coffeePrice, 'грн.')
+      return formatSum(coffeePrice, this.CURRENCY)
     },
     addToCart: function (item) {
       this.$store.dispatch('ADD_TO_CART', { ...item, count: this.count })

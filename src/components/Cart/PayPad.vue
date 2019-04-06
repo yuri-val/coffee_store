@@ -4,7 +4,7 @@
       <fish-row class="padded-row">
         <fish-col span="12">Получено:</fish-col>
         <fish-col span="10">
-          <span class="align-right">{{formatSum(receive, "грн.")}}</span>
+          <span class="align-right">{{formatSum(receive, CURRENCY)}}</span>
         </fish-col>
         <fish-col span="2">
           <fish-button size="mini" shape="circle" type="basic" @click="receive=CART_SUM">
@@ -15,7 +15,7 @@
       <fish-row class="padded-row">
         <fish-col span="12" class="demo-col">Сдача:</fish-col>
         <fish-col span="10">
-          <span class="align-right">{{formatSum(change, "грн.")}}</span>
+          <span class="align-right">{{formatSum(change, CURRENCY)}}</span>
         </fish-col>
         <fish-col span="2"></fish-col>
       </fish-row>
@@ -72,13 +72,13 @@ export default {
       if (coins !== undefined && coins.length > 2) this.sumString = [this.sumString.split('.')[0], coins.slice(0, 2)].join('.')
     },
     saveCheck: function () {
-      this.$store.dispatch('SAVE_CHECK', this.CART)
+      this.$store.dispatch('SAVE_CHECK', { currency: this.CURRENCY, cart: this.CART })
       this.$store.dispatch('SHOW_CART', false)
       this.$message.success('Чек успешно сохранен!', 5000)
     }
   },
   computed: {
-    ...mapGetters(['CART_SUM', 'CART']),
+    ...mapGetters(['CART_SUM', 'CART', 'CURRENCY']),
     change: function () {
       return this.canBePaid ? this.receive - this.CART_SUM : 0
     },
@@ -93,9 +93,5 @@ export default {
 <style scoped>
   .pay-pad {
     font-family: 'Courier New', Courier, monospace !important;
-  }
-  .padded-row {
-    padding-bottom: 10px !important;
-    flex-wrap: unset !important;
   }
 </style>

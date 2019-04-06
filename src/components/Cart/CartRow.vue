@@ -9,7 +9,7 @@
       </fish-buttons>
       <span v-else class="align-right">
         {{sumFormat(item)}}<br>
-        {{formatSum(item.price * item.count, 'грн.')}}
+        {{formatSum(item.price * item.count, CURRENCY)}}
         </span>
     </fish-col>
     <fish-col span="5">
@@ -26,6 +26,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import { formatSum } from '@/utils/formatter'
 
 export default {
@@ -35,6 +37,9 @@ export default {
     return {
       editRow: false
     }
+  },
+  computed: {
+    ...mapGetters(['CURRENCY'])
   },
   methods: {
     formatSum,

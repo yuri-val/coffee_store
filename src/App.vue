@@ -7,23 +7,19 @@
       </div>
       <div class="align-right header-actions">
         <fish-button style="position: relative;" shape="circle" @click="showCart">
-          <i class="fas fa-shopping-cart"></i> {{formatSum(CART_SUM, 'грн.')}}
+          <i class="fas fa-shopping-cart"></i> {{formatSum(CART_SUM, CURRENCY)}}
           <fish-tag v-if="CART_COUNT > 0" index="floating" floating color="negative" shape="circle">
             {{CART_COUNT}}
           </fish-tag>
         </fish-button>
-        <fish-button shape="circle" @click="showSettings=!showSettings">
+        <fish-button shape="circle" @click="openSettings" v-if="!SHOW_SETTINGS">
           <i class="fas fa-cogs"></i>
         </fish-button>
-        <fish-buttons v-if="showSettings">
-          <fish-button @click="changeCards(-1)">-</fish-button>
-          <fish-button disabled>Карточек в ряд: {{CARDS_IN_ROW}}</fish-button>
-          <fish-button @click="changeCards(1)">+</fish-button>
-        </fish-buttons>
       </div>
     </nav>
     <div slot="content" id="main">
       <cart />
+      <slideout-panel />
       <router-view/>
     </div>
   </fish-layout>
@@ -35,6 +31,7 @@ import { mapGetters } from 'vuex'
 
 import { formatSum } from '@/utils/formatter'
 import Cart from '@/components/Cart/CartModal'
+import SettingPanel from '@/components/Settings/SettingPanel'
 
 export default {
   name: 'App',
@@ -54,18 +51,19 @@ export default {
     window.removeEventListener('resize', this.handleResize)
   },
   computed: {
-    ...mapGetters(['CARDS_IN_ROW', 'CART_COUNT', 'CART_SUM'])
+    ...mapGetters(['SHOW_SETTINGS', 'CART_COUNT', 'CART_SUM', 'CURRENCY'])
   },
   methods: {
-    changeCards: function (count) {
-      this.$store.dispatch('SAVE_CARDS_IN_ROW', this.CARDS_IN_ROW + count)
-    },
-    formatSum: (sum, currency) => formatSum(sum, currency),
+    formatSum,
     showCart: function () {
       this.$store.dispatch('SHOW_CART', true)
     },
     handleResize () {
       this.$store.dispatch('SET_WINDOW_SIZE', window)
+    },
+    openSettings () {
+      this.$showPanel({ component: SettingPanel, width: 300, disableBgClick: true })
+      this.$store.dispatch('SHOW_SETTINGS', true)
     }
   }
 }
@@ -101,6 +99,10 @@ export default {
   }
   .align-right {
     float: right;
+  }
+  .padded-row {
+    padding-bottom: 10px !important;
+    flex-wrap: unset !important;
   }
 
 </style>

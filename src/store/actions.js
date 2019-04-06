@@ -14,8 +14,14 @@ export default {
     if (cardsCount > 6) cardsCount = 6
     context.commit('SET_CARDS_IN_ROW', cardsCount)
   },
+  SAVE_CURRENCY: (context, payload) => {
+    context.commit('SET_CURRENCY', payload)
+  },
   SHOW_CART: (context, payload) => {
     context.commit('SHOW_CART', payload)
+  },
+  SHOW_SETTINGS: (context, payload) => {
+    context.commit('SHOW_SETTINGS', payload)
   },
   ADD_TO_CART: (context, payload) => {
     context.commit('ADD_TO_CART', payload)

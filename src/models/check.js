@@ -1,22 +1,24 @@
 export class Check {
-  constructor (date, cart) {
-    this.header = this.fillHeader(date, cart)
-    this.checkItems = this.items(cart)
+  constructor (date, options) {
+    this.header = this.fillHeader(date, options)
+    this.checkItems = this.items(options)
   }
 
-  fillHeader (date, cart) {
+  fillHeader (date, options) {
     return {
       date: date,
-      sum: cart.reduce((sum, item) => sum + item.price * item.count, 0)
+      currency: options.currency,
+      sum: options.cart.reduce((sum, item) => sum + item.price * item.count, 0)
     }
   }
 
-  items (cart) {
-    return cart.map((item) => ({
+  items (options) {
+    return options.cart.map((item) => ({
       coffeeId: item.id,
       price: item.price,
       count: item.count,
-      sum: item.price * item.count
+      sum: item.price * item.count,
+      currency: options.currency
     }))
   }
 }
