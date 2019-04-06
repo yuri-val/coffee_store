@@ -7,7 +7,10 @@
         <fish-button disabled>{{item.count}}</fish-button>
         <fish-button @click="item.count++">+</fish-button>
       </fish-buttons>
-      <span v-else class="align-right">{{sumFormat(item)}}</span>
+      <span v-else class="align-right">
+        {{sumFormat(item)}}<br>
+        {{formatSum(item.price * item.count, 'грн.')}}
+        </span>
     </fish-col>
     <fish-col span="5">
       <div class="align-right">
@@ -34,7 +37,8 @@ export default {
     }
   },
   methods: {
-    sumFormat: (item) => `${formatSum(item.price)} x ${item.count} = ${formatSum(item.price * item.count, 'грн.')}`,
+    formatSum,
+    sumFormat: (item) => `${formatSum(item.price)} x ${item.count}`,
     deleteRow: function () {
       this.$store.dispatch('DELETE_CART_ITEM', this.index)
     }

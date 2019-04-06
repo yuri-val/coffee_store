@@ -9,7 +9,7 @@ export default {
     const newItem = payload
     let item = state.cart.find((el) => el.id === newItem.id)
     if (item === undefined) {
-      state.cart.push({...newItem})
+      state.cart.push({ ...newItem })
     } else {
       item.count += newItem.count
     }
@@ -22,5 +22,9 @@ export default {
   },
   CLEAR_CART: (state, payload) => {
     state.cart = []
+  },
+  SET_WINDOW_SIZE: (state, payload) => {
+    state.window.width = payload.innerWidth
+    state.window.height = payload.innerHeight
   }
 }

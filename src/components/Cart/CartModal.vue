@@ -1,13 +1,17 @@
 <template>
-    <fish-modal title="Чек" :visible="SHOW_CART" @keydown.esc="close" @update:visible="close" class="cart" >
+    <fish-modal :width="windowWith" title="Чек" :visible="SHOW_CART" @keydown.esc="close" @update:visible="close" class="cart" >
       <fish-row>
         <fish-col span="15">
           <cart-row v-for="(item, index) in CART" :key='index' :item="item" :index="index" />
           <br>
           <fish-row :key='9999'>
             <fish-col span="10"><b>Всего:</b></fish-col>
-            <fish-col span="9"><b class="align-right">{{formatSum(CART_SUM, 'грн.')}}</b></fish-col>
-            <fish-col span="3"></fish-col>
+            <fish-col span="8"><b class="align-right">{{formatSum(CART_SUM, 'грн.')}}</b></fish-col>
+            <fish-col span="4">
+              <fish-button shape="circle" type="positive" @click="saveCheck" size="small">
+                Оплата без сдачи
+              </fish-button>
+            </fish-col>
           </fish-row>
         </fish-col>
         <fish-col span="2" />
@@ -37,14 +41,21 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['SHOW_CART', 'CART', 'CART_SUM'])
+    ...mapGetters(['SHOW_CART', 'CART', 'CART_SUM', 'WINDOW']),
+    windowWith: function () {
+      return this.WINDOW.width < 860 ? this.WINDOW.width : this.WINDOW.width * 0.75
+    }
   },
   methods: {
     close: function () {
       this.$store.dispatch('SHOW_CART', false)
     },
-    formatSum: formatSum
-
+    formatSum,
+    saveCheck: function () {
+      this.$store.dispatch('SAVE_CHECK', this.CART)
+      this.$store.dispatch('SHOW_CART', false)
+      this.$message.success('Чек успешно сохранен!', 5000)
+    }
   }
 }
 </script>

@@ -3,15 +3,21 @@
     <div>
       <fish-row class="padded-row">
         <fish-col span="12" class="demo-col">Получено:</fish-col>
-        <fish-col span="12">
+        <fish-col span="10">
           <span class="align-right">{{formatSum(receive, "грн.")}}</span>
+        </fish-col>
+        <fish-col span="2">
+          <fish-button size="mini" shape="circle" type="basic" @click="receive=CART_SUM">
+            <i class="fas fa-equals"></i>
+          </fish-button>
         </fish-col>
       </fish-row>
       <fish-row class="padded-row">
         <fish-col span="12" class="demo-col">Сдача:</fish-col>
-        <fish-col span="12">
+        <fish-col span="10">
           <span class="align-right">{{formatSum(change, "грн.")}}</span>
         </fish-col>
+        <fish-col span="2"></fish-col>
       </fish-row>
     </div>
     <br>

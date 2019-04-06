@@ -46,6 +46,13 @@ export default {
       showSettings: false
     }
   },
+  created () {
+    window.addEventListener('resize', this.handleResize)
+    this.handleResize()
+  },
+  destroyed () {
+    window.removeEventListener('resize', this.handleResize)
+  },
   computed: {
     ...mapGetters(['CARDS_IN_ROW', 'CART_COUNT', 'CART_SUM'])
   },
@@ -56,6 +63,9 @@ export default {
     formatSum: (sum, currency) => formatSum(sum, currency),
     showCart: function () {
       this.$store.dispatch('SHOW_CART', true)
+    },
+    handleResize () {
+      this.$store.dispatch('SET_WINDOW_SIZE', window)
     }
   }
 }
